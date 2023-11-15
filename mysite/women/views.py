@@ -55,8 +55,6 @@ class WomenCategory(DataMixin, ListView):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
 
 
-s = {'asdasda': 231, 'adsasd': 51234}
-
 
 class ShowPost(DataMixin, DetailView):
     model = Women
@@ -164,16 +162,6 @@ def userLogout(request):
     return redirect('login')
 
 
-# def about(request):
-#     womens = Women.objects.all()
-#     paginator = Paginator(womens,5)
-#     page_num = request.GET.get('page')
-#     page_obj = paginator.get_page(page_num)
-#
-#     context = {'page_obj': page_obj, 'title': 'Контакты'}
-#
-#     return render(request, 'women/about.html', context=context)
-
 class About(DataMixin, ListView):
     model = Women
     template_name = 'women/about.html'
@@ -183,66 +171,3 @@ class About(DataMixin, ListView):
         c_def = self.get_user_context(title="О странице")
         return context | c_def
 
-#
-# def login(request):
-#     context = {'menu': menu}
-#     return render(request, 'women/login.html', context=context)
-#
-
-
-#
-# def addPage_1(request):
-#     if request.method == 'POST':
-#         form = AddPostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             print(form.cleaned_data)
-#             try:
-#                 # Women.objects.create(**form.cleaned_data) сохранение данных через форму, которая не связана с моделью
-#                 form.save()
-#                 return redirect('home')
-#             except:
-#                 form.add_error(None, 'Ошибка добавления поста')
-#     else:
-#         form = AddPostForm()
-#
-#     context = {
-#         'form': form,
-#         'menu': menu,
-#         'title': 'Добавление статьи'
-#     }
-#     return render(request, 'women/add_page.html', context=context)
-#
-# def showPost_1(request, post_slug):
-#     post = get_object_or_404(Women, slug=post_slug)
-#     context = {
-#         'menu': menu,
-#         'post': post,
-#         'title': post.title,
-#         'cat_selected': post.cat_id
-#     }
-#
-#
-#     return render(request, 'women/post.html', context=context)
-#
-#
-# def index_1(request):
-#     posts = Women.objects.all()
-#     context = {
-#         'posts': posts,
-#         'menu': menu,
-#         'title': 'Главная страница',
-#         'cat_selected': 0
-#     }
-#     return render(request, 'women/index.html', context=context)
-#
-# def showCategory_1(request, cat_slug):
-#     categoty = get_object_or_404(Category, slug=cat_slug)
-#     posts = Women.objects.filter(cat_id=categoty.pk)
-#     context = {
-#         'posts': posts,
-#         'menu': menu,
-#         'title': 'Категории',
-#         'cat_selected': categoty.pk
-#     }
-#     #return render(request, 'women/add_page.html', context=context)
-#     return render(request, 'women/index.html', context=context)
