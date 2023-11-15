@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from mysite import settings
+from women.api_views import WomenAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('women/',include("women.urls"))
+    path('women/',include("women.urls")),
+    path('api/v1/womenList/', WomenAPIView.as_view(), name='api_v1')
 ]
 
 if settings.DEBUG:
