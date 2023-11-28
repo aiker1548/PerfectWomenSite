@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from mysite import settings
-from women.api_views import WomenAPIView
+from women.api_views import *
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'women', WomenViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('women/',include("women.urls")),
-    path('api/v1/womenList/', WomenAPIView.as_view(), name='api_v1')
+    path('women/', include("women.urls")),
+    path('api/v1/',include(router.urls), name='api_v1'),
 ]
 
 if settings.DEBUG:

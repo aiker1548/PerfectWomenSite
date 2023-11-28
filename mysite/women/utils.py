@@ -5,8 +5,9 @@ from django.core.cache import cache
 menu = [
     {'title': "О сайте", 'url_name': 'about'},
     {'title': "Добавить статью", 'url_name': 'add_page'},
-    {'title': "Контакты", 'url_name': 'contact', 'UserIn' : 0}
+    {'title': "Контакты", 'url_name': 'contact', 'UserIn': 0}
 ]
+
 
 class DataMixin:
     paginate_by = 3
@@ -32,7 +33,5 @@ class DataMixin:
     # def validButtonsPages(self, **kwargs):
     #     if context['paginator'].num_pages > 1:
     #         if context[]
-
-
 
 
